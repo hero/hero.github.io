@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="herowuking, herowuking@qq.com">
+  
+  
+  
+  <title>动手搭建基于Hexo的个人博客 | Herowuking&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hexo,hexo,github pages,coding pages,travis-ci,">
+  
+
+  
+    <meta name="description" content="无影的天空">
+  
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <script src="/js/util.js"></script>
+<script src="/js/valine.min.js"></script>
+
+  
+    <link rel="stylesheet" href="/custom/style.css">
+  
+
+  
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
+  
+
+  
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">无影的天空</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a href="/" target="_self">
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a href="/archives/" target="_self">
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a href="/categories/" target="_self">
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a href="/tags/" target="_self">
+              标签
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          
+            <a href="/friends/" target="_self">
+              友链
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          
+            <a href="/about/" target="_self">
+              关于
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="">
+          
+            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <ul class="nav-menu--dropdown">
+              
+                <li>
+                  <a href="https://github.com/hero" target="_blank">
+                    Github
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="https://www.jianshu.com/u/7731e55df345" target="_blank">
+                    简书
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  
+
+<div class="post">
+  <h1 class="article-title">
+    <span>动手搭建基于Hexo的个人博客</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      发布 : 
+      2019-01-25
+    </span>
+    
+      <span>
+        分类 : 
+          <a href="/categories/Hexo/">
+            Hexo
+          </a>
+      </span>
+    
+    
+      <span>
+        浏览 : <span class="article-timer" data-identity="my-hexo-blog"></span>
+      </span>
+    
+  </div>
+
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <!-- 以下是正文 -->
+<h2 id="0-整体思路"><a href="#0-整体思路" class="headerlink" title="0. 整体思路"></a>0. 整体思路</h2><p>参考<a href="https://blog.csdn.net/qinyuanpei/article/details/79388983" target="_blank" rel="noopener">基于 Travis CI 实现 Hexo 在 Github 和 Coding 的同步部署</a>，整体部署思路如下图所示：</p>
+<p><img src="/passages/Blog/my-hexo-blog/general-idea.png" alt="博客同步部署流程图"></p>
+<blockquote>
+<p>Github 和 Coding 都能提供静态页面托管服务，利用 Travis CI 自动构建 Hexo 博客的静态页面文件，推送到 Github Pages 和 Coding Pages 仓储所在的 master 分支。</p>
+</blockquote>
+<h2 id="1-搭建本地可以访问的-Hexo-博客"><a href="#1-搭建本地可以访问的-Hexo-博客" class="headerlink" title="1. 搭建本地可以访问的 Hexo 博客"></a>1. 搭建本地可以访问的 Hexo 博客</h2><p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>博客的本地安装和构建非常简单：</p>
+<blockquote>
+<p>确认你的电脑上已经安装了<a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a>和<a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git for windows</a></p>
+</blockquote>
+<p>假设你想把你的本地 Hexo 博客放置在 F 盘根目录下，那么就在 F 盘单击鼠标<code>右键</code>–&gt;<code>Git bash here</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init hexo-blog</span><br><span class="line"><span class="built_in">cd</span> hexo-blog</span><br><span class="line">npm install</span><br><span class="line">hexo g	<span class="comment"># hexo generate</span></span><br><span class="line">hexo s	<span class="comment"># hexo server</span></span><br></pre></td></tr></table></figure>
+<p>这些基础操作，请参考<a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">Hexo 官方文档</a></p>
+<p>然后，就要选择自己喜欢的<a href="https://hexo.io/themes/" target="_blank" rel="noopener">主题</a>了，我选用的这款主题是<code>BWM</code>，一切操作参考<a href="https://godbmw.com/passages/2018-11-15-theme-bmw-docs-zh/" target="_blank" rel="noopener">官方文档</a>。</p>
+<h2 id="2-注册Github-新建仓储"><a href="#2-注册Github-新建仓储" class="headerlink" title="2. 注册Github, 新建仓储"></a>2. 注册<code>Github</code>, 新建仓储</h2><p><a href="https://github.io/" target="_blank" rel="noopener">Github</a> 的注册和仓储的创建很容易，这点相信玩 Github 的都会了。</p>
+<p>需要<strong>注意</strong>的一点就是：</p>
+<blockquote>
+<ul>
+<li>为了让 Github Pages 访问域名尽可能的简短，Repository 的名称格式为<code>username.github.io</code></li>
+<li>Repository 必须为<code>public</code>的，而且不要勾选<code>Initilize this repository with a README</code></li>
+</ul>
+</blockquote>
+<p>参考如下：</p>
+<p><img src="/passages/Blog/my-hexo-blog/github-create-repository.png" alt="github-create-repository"></p>
+<h2 id="3-注册Coding，新建仓储"><a href="#3-注册Coding，新建仓储" class="headerlink" title="3. 注册Coding，新建仓储"></a>3. 注册<code>Coding</code>，新建仓储</h2><p><em>GitHub 是国外知名的 Git 仓储，但是 GitHub 不允许百度爬虫访问，为了 Blog 文章能被百度搜索引擎访问，我们同时要将博客托管到国内的 Coding</em>，<a href="https://coding.net/" target="_blank" rel="noopener">Coding</a>现在被腾讯收了，所以注册登录之后就是<code>腾讯开发者平台</code>，这点没影响，登录可以使用微信了，反而方便。</p>
+<p>注册和创建仓储方法跟在 Github 类似，注意点也相同，在此不再赘述。</p>
+<h2 id="4-创建-SSH-密钥，私人访问令牌"><a href="#4-创建-SSH-密钥，私人访问令牌" class="headerlink" title="4. 创建 SSH 密钥，私人访问令牌"></a>4. 创建 SSH 密钥，私人访问令牌</h2><p><code>Git</code>操作如果你不想每次都输入登录信息，那么就要利用 SSH 密钥文件了。</p>
+<p>由于我的<code>Github</code>和<code>Coding</code>的登录用户名和邮箱不一样，所以我这里创建了 2 遍：</p>
+<h3 id="4-1-为-Github-创建-SSH-密钥文件，私人访问令牌"><a href="#4-1-为-Github-创建-SSH-密钥文件，私人访问令牌" class="headerlink" title="4.1 为 Github 创建 SSH 密钥文件，私人访问令牌"></a>4.1 为 Github 创建 SSH 密钥文件，私人访问令牌</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"hero"</span></span><br><span class="line">git config --global user.email <span class="string">"herowuking@qq.com"</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"herowuking@qq.com"</span></span><br><span class="line"><span class="comment"># 上面命令回车后，请注意看提示! 文件名我输入`github`，passphrase留空</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>得到的私钥文件为<code>github</code>，公钥文件为<code>github.pub</code></p>
+</blockquote>
+<p><span id="jump4.1"><br>然后，登录 Github，在 Personal settings 中，将<code>github.pub</code><em>（公钥）</em>文件中的内容添加进去：<br></span></p>
+<p><img src="/passages/Blog/my-hexo-blog/github-rsa-pub.png" alt="github-rsa-pub"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"hero"</span></span><br><span class="line">git config --global user.email <span class="string">"herowuking@qq.com"</span></span><br><span class="line"><span class="comment"># 测试SSH连接Github</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line">Hi hero! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+<p>登录 Github，点击右上角个人图标，选择<code>Settings</code>–&gt;<code>Developer settings</code>–&gt;<code>Peronal access tokens</code>，新建一个私人访问令牌，勾选<code>repo</code>，然后<code>Generate Token</code>，得到一个字符串，这需要赶紧记下来的，一会儿你就看不到它！</p>
+<p><img src="/passages/Blog/my-hexo-blog/github-token.png" alt="1548485157077"></p>
+<h3 id="4-2-为-Coding-创建-SSH-密钥文件，私人访问令牌"><a href="#4-2-为-Coding-创建-SSH-密钥文件，私人访问令牌" class="headerlink" title="4.2 为 Coding 创建 SSH 密钥文件，私人访问令牌"></a>4.2 为 Coding 创建 SSH 密钥文件，私人访问令牌</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"wuking"</span></span><br><span class="line">git config --global user.email <span class="string">"wuying283@qq.com"</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"wuying283@qq.com"</span></span><br><span class="line"><span class="comment"># 上面命令回车后，请注意看提示! 文件名我输入`coding`，passphrase留空</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>得到的私钥文件为<code>coding</code>，公钥文件为<code>coding.pub</code></p>
+</blockquote>
+<p><span id="jump4.2"><br>同理，登录<code>腾讯开发者平台</code>，在<code>个人设置</code>中将codng.pub中的公钥字符串，添加到Coding的<code>SSH公钥</code>中：<br></span></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"hero"</span></span><br><span class="line">git config --global user.email <span class="string">"herowuking@qq.com"</span></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">ssh -T git@git.dev.tencent.com</span><br><span class="line">Coding 提示: Hello wuking, You<span class="string">'ve connected to Coding.net via SSH. This is a personal key.</span></span><br><span class="line"><span class="string">wuking，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个个人公钥</span></span><br></pre></td></tr></table></figure>
+<p>登录<code>腾讯开发者平台</code>，在<code>个人设置</code>的<code>访问令牌</code>中，新建一个令牌，随便取个名字如<code>Travis_CI_Depot</code>，勾选权限<code>project:depot</code>，新建令牌，得到一个字符串。<strong>一定要赶紧记下来！</strong>，一会儿你就看不到它了。</p>
+<h2 id="5-配置-Hexo，Push-到-Github-的-blog-分支"><a href="#5-配置-Hexo，Push-到-Github-的-blog-分支" class="headerlink" title="5. 配置 Hexo，Push 到 Github 的 blog 分支"></a>5. 配置 Hexo，Push 到 Github 的 blog 分支</h2><p>Hexo 的配置文件是本地 Blog 中的_config.yml 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Herowuking's</span> <span class="string">Blog</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">无影的天空</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">herowuking</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-Hans</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Chongqing</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="attr">https://hero.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">passages/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory</span></span><br><span class="line"><span class="attr">source_dir:</span> <span class="string">source</span></span><br><span class="line"><span class="attr">public_dir:</span> <span class="string">public</span></span><br><span class="line"><span class="attr">tag_dir:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">archive_dir:</span> <span class="string">archives</span></span><br><span class="line"><span class="attr">category_dir:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">code_dir:</span> <span class="string">downloads/code</span></span><br><span class="line"><span class="attr">i18n_dir:</span> <span class="string">:lang</span></span><br><span class="line"><span class="attr">skip_render:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Writing</span></span><br><span class="line"><span class="attr">new_post_name:</span> <span class="string">:title.md</span> <span class="comment"># File name of new posts</span></span><br><span class="line"><span class="attr">default_layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">titlecase:</span> <span class="literal">false</span> <span class="comment"># Transform title into titlecase</span></span><br><span class="line"><span class="attr">external_link:</span> <span class="literal">true</span> <span class="comment"># Open external links in new tab</span></span><br><span class="line"><span class="attr">filename_case:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">render_drafts:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">future:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">highlight:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  line_number:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  auto_detect:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  tab_replace:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = '')</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">""</span></span><br><span class="line"><span class="attr">  per_page:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">  order_by:</span> <span class="bullet">-date</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Category &amp; Tag</span></span><br><span class="line"><span class="attr">default_category:</span> <span class="string">uncategorized</span></span><br><span class="line"><span class="attr">category_map:</span></span><br><span class="line"><span class="attr">tag_map:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Date / Time format</span></span><br><span class="line"><span class="comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="attr">date_format:</span> <span class="string">YYYY-MM-DD</span></span><br><span class="line"><span class="attr">time_format:</span> <span class="attr">HH:mm:ss</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pagination</span></span><br><span class="line"><span class="comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">bmw</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span></span><br><span class="line"><span class="attr">    github:</span> <span class="string">git@github.com:hero/hero.github.io.git</span></span><br><span class="line"><span class="attr">    coding:</span> <span class="string">git@git.dev.tencent.com:wuking/wuking.coding.me.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br><span class="line"><span class="attr">  message:</span></span><br></pre></td></tr></table></figure>
+<p>在 F:/hexo-blog 目录中，单击鼠标<code>右键</code>，选择<code>Git bash here</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">"first commit"</span></span><br><span class="line">git remote add origin git@github.com:hero/hero.github.io.git</span><br><span class="line">git push -u origin master:blog</span><br></pre></td></tr></table></figure>
+<p>登录 Github 检测效果：</p>
+<p><img src="/passages/Blog/my-hexo-blog/github-first-commit.png" alt="1548486673275"></p>
+<h2 id="6-配置-Travis-CI，再次-Push"><a href="#6-配置-Travis-CI，再次-Push" class="headerlink" title="6. 配置 Travis CI，再次 Push"></a>6. 配置 Travis CI，再次 Push</h2><p>登录 Travis CI，使用 Github 账号授权登录。然后开启 hexo 博客仓储的开关，点击<code>Settings</code>按钮设置全局变量：</p>
+<p><img src="/passages/Blog/my-hexo-blog/travis-ci-settings.png" alt="1548486847050"></p>
+<p>用<a href="#jump4.1">步骤 4.1</a>创建的私人访问令牌创建一个全局变量 GI_TOKEN，用<a href="#jump4.2">步骤 4.2</a>创建的私人访问令牌创建另一个全局变量 CO_TOKEN，这两个变量后面.travis.yml 配置文件中要用到。</p>
+<p><img src="/passages/Blog/my-hexo-blog/travis-ci-env-variables.png" alt="1548487421246"></p>
+<p>在本地 Blog 的根目录中创建一个.travis.yml 配置文件，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"10"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  apt:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  directories:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">node_modules</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># S: Build Lifecycle</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="bullet">-g</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo</span> <span class="bullet">--save</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">hexo</span> <span class="string">g</span></span><br><span class="line"></span><br><span class="line"><span class="attr">after_script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">cp</span> <span class="string">./README.md</span> <span class="string">./public/README.md</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">cd</span> <span class="string">./public</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">init</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span> <span class="string">user.name</span> <span class="string">"hero"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span> <span class="string">user.email</span> <span class="string">"herowuking@qq.com"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">add</span> <span class="string">.</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">commit</span> <span class="bullet">-m</span> <span class="string">"Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">tag</span> <span class="bullet">-a</span> <span class="string">v0.0.$TRAVIS_BUILD_NUMBER</span> <span class="bullet">-m</span> <span class="string">"Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"</span></span><br><span class="line">  <span class="comment"># Github Pages</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">push</span> <span class="bullet">--force</span> <span class="bullet">--quiet</span> <span class="string">"https://$&#123;GI_TOKEN&#125;@$&#123;GI_REF&#125;"</span> <span class="attr">master:master</span></span><br><span class="line">  <span class="comment"># Github Pages tags</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">push</span> <span class="bullet">--quiet</span> <span class="string">"https://$&#123;GI_TOKEN&#125;@$&#123;GI_REF&#125;"</span> <span class="attr">master:master</span> <span class="bullet">--tags</span></span><br><span class="line">  <span class="comment"># Change login user info</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span>  <span class="string">user.name</span> <span class="string">"wuking"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">config</span>  <span class="string">user.email</span> <span class="string">"wuying283@qq.com"</span></span><br><span class="line">  <span class="comment"># Coding Pages</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">push</span> <span class="bullet">--force</span> <span class="bullet">--quiet</span> <span class="string">"https://wuking:$&#123;CO_TOKEN&#125;@$&#123;CO_REF&#125;"</span> <span class="attr">master:master</span></span><br><span class="line">  <span class="comment"># Coding Pages tags</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">git</span> <span class="string">push</span> <span class="bullet">--quiet</span> <span class="string">"https://wuking:$&#123;CO_TOKEN&#125;@$&#123;CO_REF&#125;"</span> <span class="attr">master:master</span> <span class="bullet">--tags</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># E: Build LifeCycle</span></span><br><span class="line"></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">blog</span></span><br><span class="line"><span class="attr">env:</span></span><br><span class="line"><span class="attr">  global:</span></span><br><span class="line">    <span class="comment"># Github Pages</span></span><br><span class="line"><span class="attr">    - GI_REF:</span> <span class="string">github.com/hero/hero.github.io.git</span></span><br><span class="line">    <span class="comment"># Coding Pages</span></span><br><span class="line"><span class="attr">    - CO_REF:</span> <span class="string">git.dev.tencent.com/wuking/wuking.coding.me.git</span></span><br></pre></td></tr></table></figure>
+<p>再次 Push：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .travis.yml		<span class="comment"># 如果你不确认有哪些文件修改了，请使用 `git add -A`命令</span></span><br><span class="line">git commit -m <span class="string">"Add .travis.yml"</span></span><br><span class="line">git push -u origin master:blog</span><br></pre></td></tr></table></figure>
+<h2 id="7-开启-Github-和-Coding-的-Pages-服务，检阅效果"><a href="#7-开启-Github-和-Coding-的-Pages-服务，检阅效果" class="headerlink" title="7. 开启 Github 和 Coding 的 Pages 服务，检阅效果"></a>7. 开启 Github 和 Coding 的 Pages 服务，检阅效果</h2><p>分别登录<code>Github</code>和<code>Coding</code>，查看 master 分支下是否有注释为<code>Update Blog By TravisCI With Build xxx</code>字样的推送，如果没有检查 Travis CI 的日志，以及上面的配置是否有误，确认看到了 Travis CI 的自动推送之后，就可以分别在项目设置里面，开启 Pages 服务了。</p>
+<blockquote>
+<ul>
+<li>Github Pages 默认是开启的，只要你的 Repository 名称是<code>usename.github.io</code>格式，而且 master 分支里面不为空，有静态页面文件存在即可。</li>
+<li>Coding Pages 需要手工开启<code>Pages 服务</code>。</li>
+</ul>
+</blockquote>
+<h2 id="8-使用hexo-deploy一键自动部署"><a href="#8-使用hexo-deploy一键自动部署" class="headerlink" title="8. 使用hexo deploy一键自动部署"></a>8. 使用<code>hexo deploy</code>一键自动部署</h2><p><code>Travis CI</code>只是显得逼格较高而已，对于<code>Hexo</code>博客来讲，用处不大的。</p>
+<p>有些<code>主题</code>会让你发现本地浏览没问题，<code>Travis CI</code>构建的反而有问题~</p>
+<p>在_config.yml 文件文件中配置好<code>deploy</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span></span><br><span class="line"><span class="attr">    github:</span> <span class="string">git@github.com:hero/hero.github.io.git</span></span><br><span class="line"><span class="attr">    coding:</span> <span class="string">git@git.dev.tencent.com:wuking/wuking.coding.me.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br><span class="line"><span class="attr">  message:</span></span><br></pre></td></tr></table></figure>
+<p>然后就可以在<code>Git bash</code>命令行中一键部署了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp; hexo deploy</span><br></pre></td></tr></table></figure>
+    </div>
+  </div>
+  
+    <div class="copy-right">
+      <div class="markdown-body">
+        <blockquote>
+        
+        
+          本文作者 : herowuking <br>
+        
+        原文链接 : <a href="">https://hero.github.io/passages/Blog/my-hexo-blog/</a><br>
+        版权声明 : 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+        </blockquote>
+      </div>
+    </div>
+  
+  
+  
+    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
+</div>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+  
+
+  
+    <div id="reward">
+  
+    <p id="reward-meta">Reward me with a cup of coffee</p>
+  
+  <button id="reward-btn">
+    
+    <span>打赏</span>
+  </button>
+  <div id="reward-qrcode">
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/wx-donate.png" alt="微信打赏">
+        <p class="qrcode-meta">微信打赏</p>
+      </div>
+    
+  </div>
+
+</div>
+
+<script>
+  (() => {
+    let button = document.querySelector('#reward-btn'),
+      qrcode = document.querySelector('#reward-qrcode'),
+      display = false;
+    
+    button.addEventListener('click', () => {
+      qrcode.style.display = display ? 'none' : 'block'
+      display = !display
+    }, false)
+  })()
+</script>
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/hexo/">
+              #hexo
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/github-pages/">
+              #github pages
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/coding-pages/">
+              #coding pages
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/travis-ci/">
+              #travis-ci
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+    
+  </nav>
+
+  
+    <a href="#comment" class="comment-anchor"></a>
+<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
+<div id="vcomments"></div>
+
+<script defer>
+  if( true ) {
+    let path = getRealPath()
+    new Valine({
+      el: "#vcomments",
+      appId: "Jm5pOTHTJic8RWOipHQJNQmD-gzGzoHsz",
+      appKey: "qKmYHXG1MgqhaoLhlkasBHv8",
+      notify: false,
+      verify: false,
+      avatar: "robohash",
+      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
+      path
+    });
+  }
+</script>
+   
+
+  
+    <script defer>
+const valineAPI = (() => {
+  try {
+    AV.init("Jm5pOTHTJic8RWOipHQJNQmD-gzGzoHsz", "qKmYHXG1MgqhaoLhlkasBHv8");
+  } catch(error) {}
+  const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+      query.equalTo("identity", identity);
+      query.find().then(results => {
+        resolve(results.length > 0);
+      }, error => reject(error));
+    })
+  }
+
+  const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+      let querys = [];
+      for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+      }
+      query = AV.Query.or.apply(null ,querys);
+    } else {
+      identity = identity || getRealPath();
+      query = new AV.Query("Timer");
+      query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
+  const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let Todo = AV.Object.extend('Timer');
+      let todo = new Todo();
+      todo.set("times", 1);
+      todo.set("identity", identity);
+      todo.save().then(res => resolve(true), error => reject(error));
+    })
+  }
+
+  const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let query = new AV.Query('Timer');
+      query.equalTo("identity", identity);
+      query.find().then(todos => {
+        todos.forEach(todo => {
+          todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+      }).then(todos => resolve(true), error => reject(error));
+    })
+  }
+
+  return {
+    isExist,
+    _get,
+    update,
+    create
+  }
+})()
+
+const calcAndWriteTimes = () => {
+  let isPost = true;
+
+  let timerAllDOM = document.querySelectorAll(".article-timer");
+
+  if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+      if(exist) {
+        return valineAPI.update(identity);
+      }
+      return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+  }
+
+  let timerDOMCache = {};
+
+  for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+      timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+      timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+      };
+    }
+  }
+
+  let identities = Object.keys(timerDOMCache);
+  valineAPI._get(identities).then(results => {
+    for(let result of results) {
+      let {identity, times} = result.attributes;
+      timerDOMCache[identity].times = times;
+      timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+      if(timerDOMCache[identity].times){
+        continue;
+      }
+      timerDOMCache[identity].dom.map(item => item.innerText = 1);
+      valineAPI.create(identity);
+    }
+  }).catch(error => console.log(error.message))
+}
+
+if(true){
+  calcAndWriteTimes();
+}
+</script>
+   
+
+</div>
+
+
+      <footer>
+  <p class="site-info">
+    博客已运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://hexo.io/">Hexo</a>
+    <br>
+    
+      <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. <a href="https://leancloud.cn/" target="_blank">leancloud.cn</a> 提供评论存储服务. <br> Copyright © 2019-2025 <a href="mailto:herowuking@qq.com">Herowuking</a>. All rights reserved. . 
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2019, 0, 25).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+  </body>
+
+</html>
