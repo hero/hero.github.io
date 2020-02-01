@@ -231,6 +231,14 @@
     
       <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. <a href="https://leancloud.cn/" target="_blank">leancloud.cn</a> 提供评论存储服务. <br> Copyright © 2019-2025 <a href="mailto:herowuking@qq.com">Herowuking</a>. All rights reserved. . 
     
+    {% if (theme.mermaid.enable)  %}
+        <script src="https://unpkg.com/mermaid@{{ theme.mermaid.version }}/dist/mermaid.min.js"></script>
+        <script>
+            if (window.mermaid) {
+                mermaid.initialize({theme: 'forest'});
+            }
+        </script>
+    {% endif %}
   </p>
 </footer>
 
