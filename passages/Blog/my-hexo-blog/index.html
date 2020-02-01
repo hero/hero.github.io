@@ -55,6 +55,14 @@
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
   
 
+  
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+  
 </head>
 
   <body>
@@ -225,7 +233,9 @@
     <div class="markdown-body">
       <!-- 以下是正文 -->
 <h2 id="0-整体思路"><a href="#0-整体思路" class="headerlink" title="0. 整体思路"></a>0. 整体思路</h2><ul>
-<li><p>一种方法是，利用<code>hexo deploy</code>一键自动部署到<code>Github Pages</code>和<code>Coding Pages</code>（<strong>个人推荐这种方法</strong>）。</p>
+<li><p>一种方法是，利用<code>hexo deploy</code>一键自动部署到<code>Github Pages</code>和<code>Coding Pages</code>（<strong>个人推荐这种方法</strong>）。手动一键部署命令也很简单<code>hexo d</code></p>
+<p>另外，本地生成静态文件命令: <code>hexo g</code></p>
+<p>本地开启hexo服务浏览：<code>hexo s</code>，若要指定端口(有时候默认端口4000本地冲突了)就用命令<code>hexo s -p 5000</code></p>
 </li>
 <li><p>还有一种<em>逼格</em>更高的，是利用<code>Travis CI</code>自动同步部署：</p>
 <p>参考<a href="https://blog.csdn.net/qinyuanpei/article/details/79388983" target="_blank" rel="noopener">基于 Travis CI 实现 Hexo 在 Github 和 Coding 的同步部署</a>，整体部署思路如下图所示：</p>
@@ -233,12 +243,14 @@
 </li>
 </ul>
 <p><strong>注意:</strong><br>这里的Git仓储有3个：</p>
-<p><div id="flowchart-0" class="flow-chart"></div></p>
-<ul>
-<li><code>Source github repo</code>: 用来存储源文件(Private)</li>
-<li><code>Github pages repo</code>: Github pages 仓储(Public)，存储<code>hexo</code>部署后生成的静态网页文件;</li>
-<li><code>Coding pages repo</code>: 功能同上，是腾讯的国内Git仓储，方便国内访问。</li>
-</ul>
+<p><pre class="mermaid">graph LR
+G0(1.Source github repo) --> Auto{Auto Deploy}
+Auto --> |Yes| TravisCI[Travis CI]
+Auto --> |No| Manual[Manual Deploy]
+   TravisCI --> Gp[2.Github pages repo]
+   TravisCI --> Cp[3.Coding pages repo]
+   Manual --> Gp
+   Manual --> Cp</pre><br> <code>1.Source github repo</code>: 用来存储源文件(Private)<br> <code>2.Github pages repo</code>: Github pages 仓储(Public)，存储<code>hexo</code>部署后生成的静态网页文件;<br> <code>3.Coding pages repo</code>: 功能同上，是腾讯的国内Git仓储，方便国内访问。</p>
 <p>如果不使用<code>Travis CI</code>自动部署，那么就是使用命令<code>hexo d</code>命令手工部署, 如果配置了Travis CI自动部署，那么就是直接推送修改后的源代码到<code>Source github repo</code>即可，Travis CI会自动执行hexo部署，生成静态网页文件后自动推送到<code>Github pages repo</code>和<code>Coding pages repo</code>。</p>
 <blockquote>
 <p>Github 和 Coding 都能提供静态页面托管服务，利用 Travis CI 自动构建或<code>hexo d</code>一键部署 Hexo 博客的静态页面文件，推送到 Github Pages 和 Coding Pages 仓储所在的 master 分支。</p>
@@ -364,20 +376,7 @@ c = \frac{1}{\sqrt{e_0\mu_0}} = 2.9979\times10^8 m/s \\
 <p>先略过。</p>
 <p>折腾参考：</p>
 <ul>
-<li><a href="https://blog.csdn.net/lzy98/article/details/81140704" target="_blank" rel="noopener">HEXO SEO 高级优化</a><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">	G0=>start: Source github Repo
-	Auto=>condition: Auto Deploy
-	Manual=>parallel: hexo d
-	Travis=>parallel: Travis CI
-	Gp=>operation: Github pages repo
-	Cp=>operation: Coding pages repo
-	
-	G0->Auto
-	Auto(yes,right)->Travis
-	Auto(no)->Manual
-	Travis(path1,right)->Gp
-	Travis(path2, bottom)->Cp
-	Manual(path1,bottom)->Gp
-	Manual(path2,right)->Cp</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></li>
+<li><a href="https://blog.csdn.net/lzy98/article/details/81140704" target="_blank" rel="noopener">HEXO SEO 高级优化</a></li>
 </ul>
     </div>
   </div>
@@ -656,15 +655,7 @@ if(true){
     <br>
     
       <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. <a href="https://leancloud.cn/" target="_blank">leancloud.cn</a> 提供评论存储服务. <br> Copyright © 2019-2025 <a href="mailto:herowuking@qq.com">Herowuking</a>. All rights reserved. . 
-    
-    {% if (theme.mermaid.enable)  %}
-        <script src="https://unpkg.com/mermaid@{{ theme.mermaid.version }}/dist/mermaid.min.js"></script>
-        <script>
-            if (window.mermaid) {
-                mermaid.initialize({theme: 'forest'});
-            }
-        </script>
-    {% endif %}
+        
   </p>
 </footer>
 
