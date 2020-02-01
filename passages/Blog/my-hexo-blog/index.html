@@ -232,6 +232,14 @@
 <p><img src="/passages/Blog/my-hexo-blog/auto-deploy-with-travis-ci.jpg" alt="Travis CI同步部署流程图"></p>
 </li>
 </ul>
+<p><strong>注意:</strong><br>这里的Git仓储有3个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">G0(Source github repo) --&gt; Auto&#123;Auto Deploy&#125;</span><br><span class="line">Auto --&gt; |Yes| TravisCI[Travis CI]</span><br><span class="line">   TravisCI --&gt; Gp[Github pages repo]</span><br><span class="line">   TravisCI --&gt; Cp[Coding pages repo]</span><br><span class="line">   Auto --&gt; |Manual Deploy| Gp</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Source github repo</code>: 用来存储源文件(Private)</li>
+<li><code>Github pages repo</code>: Github pages 仓储(Public)，存储<code>hexo</code>部署后生成的静态网页文件;</li>
+<li><code>Coding pages repo</code>: 功能同上，是腾讯的国内Git仓储，方便国内访问。</li>
+</ul>
+<p>如果不使用<code>Travis CI</code>自动部署，那么就是使用命令<code>hexo clean &amp; hexo deploy</code>, 如果配置了Travis CI自动部署，那么就是直接推送修改后的源代码到<code>Source github repo</code>即可，Travis CI会自动执行hexo部署，生成静态网页文件后自动推送到<code>Github pages repo</code>和<code>Coding pages repo</code>。</p>
 <blockquote>
 <p>Github 和 Coding 都能提供静态页面托管服务，利用 Travis CI 自动构建或<code>hexo d</code>一键部署 Hexo 博客的静态页面文件，推送到 Github Pages 和 Coding Pages 仓储所在的 master 分支。</p>
 </blockquote>
