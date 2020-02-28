@@ -7,22 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类 - Herowuking&#39;s Blog</title>
+<title>使用Netlify托管自己的博客 - Herowuking&#39;s Blog</title>
 
 
-    <meta name="description" content="无影的天空">
-<meta name="keywords" content="hexo,github pages,coding pages,travis-ci,Github,Netlify,tencent,meeting,theme,hexo-theme-icarus,plugins,Proxifier,Go,Qt">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Herowuking&#39;s Blog">
-<meta property="og:url" content="https://hero.github.io/categories/index.html">
+    <meta name="description" content="她太美了，一见钟情…">
+<meta name="keywords" content="hexo,Github,Netlify">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Netlify托管自己的博客">
+<meta property="og:url" content="https://hero.github.io/categories/Hexo/netlify/index.html">
 <meta property="og:site_name" content="Herowuking&#39;s Blog">
-<meta property="og:description" content="无影的天空">
+<meta property="og:description" content="她太美了，一见钟情…">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://hero.github.io/images/og_image.png">
+<meta property="og:image" content="https://hero.github.io/categories/Hexo/netlify/netlify-thumbnail.png">
+<meta property="og:updated_time" content="2020-02-28T06:46:38.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Herowuking&#39;s Blog">
-<meta name="twitter:description" content="无影的天空">
-<meta name="twitter:image" content="https://hero.github.io/images/og_image.png">
+<meta name="twitter:title" content="使用Netlify托管自己的博客">
+<meta name="twitter:description" content="她太美了，一见钟情…">
+<meta name="twitter:image" content="https://hero.github.io/categories/Hexo/netlify/netlify-thumbnail.png">
 
 
 
@@ -82,13 +83,13 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
+<body class="is-2-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Herowuking&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="使用Netlify托管自己的博客" height="28">
             
             </a>
         </div>
@@ -102,7 +103,7 @@
                 <a class="navbar-item"
                 href="/archives">归档</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/categories">分类</a>
                 
                 <a class="navbar-item"
@@ -124,6 +125,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -137,34 +142,176 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Hexo/">
-            <span class="level-start">
-                <span class="level-item">Hexo</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Others/">
-            <span class="level-start">
-                <span class="level-item">Others</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-28T03:38:35.000Z">2020-02-28</time>
+                
+                <div class="level-item">				
+                <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1274 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
         </div>
+        		
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                使用Netlify托管自己的博客
+            
+        </h1>
+		
+			<div class="content">
+				<p>她太美了，一见钟情…</p>
+<!-- 以上是摘要 -->
+<a id="more"></a>
+<!-- 以下是正文 -->
+<h3 id="1-什么是netlify"><a class="markdownIt-Anchor" href="#1-什么是netlify"></a> 1. 什么是Netlify</h3>
+<p><a href="https://app.netlify.com/">Netlify</a>是一个功能强大的静态站点托管，她具有如下功能：</p>
+<ul>
+<li>托管静态资源</li>
+<li>将静态网站部署到CDN上</li>
+<li>Continuous Deployment 持续部署，当你提交改变到git 仓库，它就会自动运行build command，进行自动部署。</li>
+<li>可以添加自定义域名</li>
+<li>可以启用免费的TLS证书，启用HTTPS</li>
+<li>完美支持Github，你Github中的所有前端项目都可以用她发布预览</li>
+</ul>
+<p>有了她，什么<code>Github Pages</code>就可以放弃了！</p>
+<h3 id="2-食用指南"><a class="markdownIt-Anchor" href="#2-食用指南"></a> 2. 食用指南</h3>
+<p>首先，打开<a href="https://app.netlify.com/">Netlify</a>页面，然后用你的Github账号登录即可。</p>
+<p><img src="/categories/Hexo/netlify/image-20200228115525549.png" alt="Login_Netlify_with_Github"></p>
+<p>第一次需要Github授权，以后登录就不需要了。虽说Netlify国内也可以访问，但是为了更好的体验，还是自行搭梯子。</p>
+<p>登录进去之后，点击<code>New site from Git</code>，出现如下界面：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228124733837.png" alt="New_site_from_Git"></p>
+<p>然后选择<code>Github</code>，选择你需要Netlify托管和发布的Repo：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228125159355.png" alt="Select_repo_to_deploy"></p>
+<p>如果没有配置过，就点击<code>Configure the Netlify app on Github</code>，按照弹出来的指引完成Repository的配置：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228125335263.png" alt="Repo_access_setting"></p>
+<p>在Netlify配置界面，单击Github中已经授权登录的Repo，出现Deploy配置界面，默认就好了，因为Netlify智能识别了它是Hexo站点，点击<code>Deploy site</code>完成。</p>
+<p><img src="/categories/Hexo/netlify/image-20200228125709825.png" alt="Deploy_details"></p>
+<p>点击 ⚙️<code>Site Settings</code>按钮 ，可以修改<code>Site name</code>：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228130521212.png" alt="Netlify_siteName"></p>
+<p>只要不冲突，你就可以用这个域名了。</p>
+<p><strong>处理部署失败</strong></p>
+<p>第一次部署失败了，因为我的<code>hexo-blog</code>目录中的<code>.gitingnore</code>过滤掉了<code>public/</code>目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">12:57:09 PM: Failing build: Failed to build site</span><br><span class="line">12:57:09 PM: failed during stage &apos;building site&apos;: Deploy directory &apos;public/&apos; does not exist</span><br><span class="line">12:57:09 PM: Finished processing build request in 1m3.247601171s</span><br></pre></td></tr></table></figure>
+<p>解决办法就是修改<code>hexo-blog</code>目录中的<code>.gitingnore</code>，保留<code>public/index.html</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/*</span><br><span class="line">!public/index.html</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+<p>但是要注意的是，每次执行<code>hexo clean</code>命令都会删除这个<code>public/</code>目录的，所以的Push到Github之前，记得本地<code>hexo g</code>一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清除缓存，重新生成</span></span><br><span class="line">hexo clean &amp; hexo g</span><br><span class="line"><span class="comment"># 本地浏览</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="comment"># 浏览没问题了，再git add . &amp; git commit &amp; git push</span></span><br></pre></td></tr></table></figure>
+<p><strong>为啥<code>Page nof found</code>？</strong></p>
+<p>部署成功了，但是访问页面却显示<code>Page not found</code>:</p>
+<p><img src="/categories/Hexo/netlify/image-20200228143817335.png" alt="Page_not_found_err"></p>
+<p>查看Deploy日志，<code>hexo generate</code>命令之后的部分：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">2:30:32 PM: Executing user <span class="built_in">command</span>: hexo generate</span><br><span class="line">2:30:34 PM: INFO  =======================================</span><br><span class="line">2:30:34 PM:  ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗</span><br><span class="line">2:30:34 PM:  ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝</span><br><span class="line">2:30:34 PM:  ██║██║     ███████║██████╔╝██║   ██║███████╗</span><br><span class="line">2:30:34 PM:  ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║</span><br><span class="line">2:30:34 PM:  ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║</span><br><span class="line">2:30:34 PM:  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝</span><br><span class="line">2:30:34 PM: =============================================</span><br><span class="line">2:30:34 PM: INFO  Checking dependencies</span><br><span class="line">2:30:34 PM: INFO  Validating the configuration file</span><br><span class="line">2:30:34 PM: WARN  themes/icarus/_config.yml is not found. We are creating one <span class="keyword">for</span> you...</span><br><span class="line">2:30:34 PM: INFO  themes/icarus/_config.yml is created. Please restart Hexo to apply changes.</span><br><span class="line">2:30:34 PM: Skipping <span class="built_in">functions</span> preparation step: no <span class="built_in">functions</span> directory <span class="built_in">set</span></span><br><span class="line">2:30:34 PM: Caching artifacts</span><br><span class="line">2:30:34 PM: Started saving node modules</span><br><span class="line">2:30:34 PM: Finished saving node modules</span><br><span class="line">2:30:34 PM: Started saving yarn cache</span><br><span class="line">2:30:34 PM: Finished saving yarn cache</span><br><span class="line">2:30:34 PM: Started saving pip cache</span><br><span class="line">2:30:34 PM: Finished saving pip cache</span><br><span class="line">2:30:34 PM: Started saving emacs cask dependencies</span><br><span class="line">2:30:34 PM: Finished saving emacs cask dependencies</span><br><span class="line">2:30:34 PM: Started saving maven dependencies</span><br><span class="line">2:30:34 PM: Finished saving maven dependencies</span><br><span class="line">2:30:34 PM: Started saving boot dependencies</span><br><span class="line">2:30:34 PM: Finished saving boot dependencies</span><br><span class="line">2:30:34 PM: Started saving go dependencies</span><br><span class="line">2:30:34 PM: Finished saving go dependencies</span><br><span class="line">2:30:34 PM: Build script success</span><br><span class="line">2:30:34 PM: Starting to deploy site from <span class="string">'public/'</span></span><br><span class="line">2:30:34 PM: Creating deploy tree </span><br><span class="line">2:30:34 PM: 0 new files to upload</span><br><span class="line">2:30:34 PM: Starting post processing</span><br><span class="line">2:30:34 PM: 0 new <span class="built_in">functions</span> to upload</span><br><span class="line">2:30:34 PM: Post processing <span class="keyword">done</span></span><br><span class="line">2:30:34 PM: Site is live</span><br><span class="line">2:30:51 PM: Finished processing build request <span class="keyword">in</span> 1m21.11547795s</span><br></pre></td></tr></table></figure>
+<p>认真检测上面的日志，发现有一个容易被忽略的警告:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">themes/icarus/_config.yml is not found. We are creating one for you...</span><br></pre></td></tr></table></figure>
+<p>检测<code>themes/icarus/</code>目录里面，发现有个<code>.gitignore</code>文件，将这个自己辛苦配置的主题配置文件给过滤掉了，本地由于目录没有清理过，没有出现问题，但是在远程主机上，没有它很显然主题<code>icarus</code>没法工作的！</p>
+<p>处理办法也简单，删除<code>themes/icarus/.gitignore</code>文件，重新Push &amp; Deploy！</p>
+<h3 id="3-自定义域名-添加https"><a class="markdownIt-Anchor" href="#3-自定义域名-添加https"></a> 3. 自定义域名、添加HTTPS</h3>
+<p>这个需要自己有域名了，我懒得弄。</p>
+<p>详细的参考<a href="https://docs.netlify.com/domains-https/custom-domains/">官方文档</a>或者百度搜索其它人的博客文章吧~</p>
+
+			</div>
+		
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Github/">Github</a>, <a class="has-link-grey -link" href="/tags/Netlify/">Netlify</a>, <a class="has-link-grey -link" href="/tags/hexo/">hexo</a>
+                </div>
+            </div>
+        </div>
+        		
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay-donate.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wx-donate.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/categories/Others/proxifier/">
+                <span class="level-item">使用Proxifier代理安装Qt for Golang</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: true,
+        app_id: 'Jm5pOTHTJic8RWOipHQJNQmD-gzGzoHsz',
+        app_key: 'qKmYHXG1MgqhaoLhlkasBHv8',
+        placeholder: '有啥想说的？'
+    });
+</script>
+
     </div>
 </div>
 </div>
@@ -362,122 +509,32 @@
 
     
         
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Github/">
-                        <span class="tag">Github</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Go/">
-                        <span class="tag">Go</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Netlify/">
-                        <span class="tag">Netlify</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Proxifier/">
-                        <span class="tag">Proxifier</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Qt/">
-                        <span class="tag">Qt</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/coding-pages/">
-                        <span class="tag">coding pages</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/github-pages/">
-                        <span class="tag">github pages</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/hexo/">
-                        <span class="tag">hexo</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/hexo-theme-icarus/">
-                        <span class="tag">hexo-theme-icarus</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/meeting/">
-                        <span class="tag">meeting</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/plugins/">
-                        <span class="tag">plugins</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/tencent/">
-                        <span class="tag">tencent</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/theme/">
-                        <span class="tag">theme</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/travis-ci/">
-                        <span class="tag">travis-ci</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
+    
+    
+        <div class="column-right-shadow  is-sticky">
+        
+            
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-什么是netlify">        
+        <span> 1. 什么是Netlify</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-食用指南">        
+        <span> 2. 食用指南</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-自定义域名-添加https">        
+        <span> 3. 自定义域名、添加HTTPS</span>
+        </a></li></ul>
             </div>
         </div>
     </div>
-</div>
 
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            
         
             <div class="card widget">
     <div class="card-content">
@@ -588,132 +645,6 @@
 </div>
 
 				
-					
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/categories/Hexo/netlify/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Hexo/netlify/netlify-thumbnail.png" alt="使用Netlify托管自己的博客">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-28T03:38:35.000Z">2020-02-28</time></div>
-                    <a href="/categories/Hexo/netlify/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用Netlify托管自己的博客</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/categories/Others/proxifier/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Others/proxifier/proxifier-thumbnail.png" alt="使用Proxifier代理安装Qt for Golang">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T13:37:00.000Z">2020-02-19</time></div>
-                    <a href="/categories/Others/proxifier/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用Proxifier代理安装Qt for Golang</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Others/">Others</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/categories/Others/meeting/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Others/meeting/meeting-thumbnail.png" alt="腾讯会议的使用记录">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T08:35:00.000Z">2020-02-18</time></div>
-                    <a href="/categories/Others/meeting/" class="title has-link-black-ter is-size-6 has-text-weight-normal">腾讯会议的使用记录</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Others/">Others</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/categories/Hexo/custom-icarus-theme/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Hexo/custom-icarus-theme/custom-hexo-theme-thumbnail.png" alt="Hexo配置主题与插件">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-02T04:45:30.000Z">2020-02-02</time></div>
-                    <a href="/categories/Hexo/custom-icarus-theme/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexo配置主题与插件</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/categories/Hexo/my-hexo-blog/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Hexo/my-hexo-blog/my-hexo-blog-thumbnail.png" alt="动手搭建基于Hexo的个人博客">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-25T02:07:30.000Z">2019-01-25</time></div>
-                    <a href="/categories/Hexo/my-hexo-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">动手搭建基于Hexo的个人博客</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Go/" style="font-size: 10px;">Go</a> <a href="/tags/Netlify/" style="font-size: 10px;">Netlify</a> <a href="/tags/Proxifier/" style="font-size: 10px;">Proxifier</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/coding-pages/" style="font-size: 10px;">coding pages</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/hexo-theme-icarus/" style="font-size: 10px;">hexo-theme-icarus</a> <a href="/tags/meeting/" style="font-size: 10px;">meeting</a> <a href="/tags/plugins/" style="font-size: 10px;">plugins</a> <a href="/tags/tencent/" style="font-size: 10px;">tencent</a> <a href="/tags/theme/" style="font-size: 10px;">theme</a> <a href="/tags/travis-ci/" style="font-size: 10px;">travis-ci</a>
-    </div>
-</div>
-    
-    
-</div>
-
-				
             </div>
         </div>
     </section>
@@ -723,7 +654,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Herowuking&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="使用Netlify托管自己的博客" height="28">
                 
                 </a>
                 <p class="is-size-7">
