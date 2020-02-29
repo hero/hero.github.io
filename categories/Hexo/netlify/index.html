@@ -14,18 +14,20 @@
 <meta name="keywords" content="hexo,Github,Netlify">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Netlify托管自己的博客">
-<meta property="og:url" content="https://hero.github.io/categories/Hexo/netlify/index.html">
+<meta property="og:url" content="https://www.herowuking.com/categories/Hexo/netlify/index.html">
 <meta property="og:site_name" content="Herowuking&#39;s Blog">
 <meta property="og:description" content="她太美了，一见钟情…">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://hero.github.io/categories/Hexo/netlify/netlify-thumbnail.png">
-<meta property="og:updated_time" content="2020-02-28T06:46:38.898Z">
+<meta property="og:image" content="https://www.herowuking.com/categories/Hexo/netlify/netlify-thumbnail.png">
+<meta property="og:updated_time" content="2020-02-29T00:20:08.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Netlify托管自己的博客">
 <meta name="twitter:description" content="她太美了，一见钟情…">
-<meta name="twitter:image" content="https://hero.github.io/categories/Hexo/netlify/netlify-thumbnail.png">
+<meta name="twitter:image" content="https://www.herowuking.com/categories/Hexo/netlify/netlify-thumbnail.png">
 
 
+
+<link rel="canonical" href="https://www.herowuking.com" />
 
 
 
@@ -159,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1274 个字)
+                    15 分钟 读完 (大约 2264 个字)
                 </span>
                 
                 
@@ -207,7 +209,7 @@
 <p><img src="/categories/Hexo/netlify/image-20200228125709825.png" alt="Deploy_details"></p>
 <p>点击 ⚙️<code>Site Settings</code>按钮 ，可以修改<code>Site name</code>：</p>
 <p><img src="/categories/Hexo/netlify/image-20200228130521212.png" alt="Netlify_siteName"></p>
-<p>只要不冲突，你就可以用这个域名了。</p>
+<p>只要不冲突，就可以用这个域名了。</p>
 <p><strong>处理部署失败</strong></p>
 <p>第一次部署失败了，因为我的<code>hexo-blog</code>目录中的<code>.gitingnore</code>过滤掉了<code>public/</code>目录。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">12:57:09 PM: Failing build: Failed to build site</span><br><span class="line">12:57:09 PM: failed during stage &apos;building site&apos;: Deploy directory &apos;public/&apos; does not exist</span><br><span class="line">12:57:09 PM: Finished processing build request in 1m3.247601171s</span><br></pre></td></tr></table></figure>
@@ -220,13 +222,91 @@
 <p><img src="/categories/Hexo/netlify/image-20200228143817335.png" alt="Page_not_found_err"></p>
 <p>查看Deploy日志，<code>hexo generate</code>命令之后的部分：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">2:30:32 PM: Executing user <span class="built_in">command</span>: hexo generate</span><br><span class="line">2:30:34 PM: INFO  =======================================</span><br><span class="line">2:30:34 PM:  ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗</span><br><span class="line">2:30:34 PM:  ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝</span><br><span class="line">2:30:34 PM:  ██║██║     ███████║██████╔╝██║   ██║███████╗</span><br><span class="line">2:30:34 PM:  ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║</span><br><span class="line">2:30:34 PM:  ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║</span><br><span class="line">2:30:34 PM:  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝</span><br><span class="line">2:30:34 PM: =============================================</span><br><span class="line">2:30:34 PM: INFO  Checking dependencies</span><br><span class="line">2:30:34 PM: INFO  Validating the configuration file</span><br><span class="line">2:30:34 PM: WARN  themes/icarus/_config.yml is not found. We are creating one <span class="keyword">for</span> you...</span><br><span class="line">2:30:34 PM: INFO  themes/icarus/_config.yml is created. Please restart Hexo to apply changes.</span><br><span class="line">2:30:34 PM: Skipping <span class="built_in">functions</span> preparation step: no <span class="built_in">functions</span> directory <span class="built_in">set</span></span><br><span class="line">2:30:34 PM: Caching artifacts</span><br><span class="line">2:30:34 PM: Started saving node modules</span><br><span class="line">2:30:34 PM: Finished saving node modules</span><br><span class="line">2:30:34 PM: Started saving yarn cache</span><br><span class="line">2:30:34 PM: Finished saving yarn cache</span><br><span class="line">2:30:34 PM: Started saving pip cache</span><br><span class="line">2:30:34 PM: Finished saving pip cache</span><br><span class="line">2:30:34 PM: Started saving emacs cask dependencies</span><br><span class="line">2:30:34 PM: Finished saving emacs cask dependencies</span><br><span class="line">2:30:34 PM: Started saving maven dependencies</span><br><span class="line">2:30:34 PM: Finished saving maven dependencies</span><br><span class="line">2:30:34 PM: Started saving boot dependencies</span><br><span class="line">2:30:34 PM: Finished saving boot dependencies</span><br><span class="line">2:30:34 PM: Started saving go dependencies</span><br><span class="line">2:30:34 PM: Finished saving go dependencies</span><br><span class="line">2:30:34 PM: Build script success</span><br><span class="line">2:30:34 PM: Starting to deploy site from <span class="string">'public/'</span></span><br><span class="line">2:30:34 PM: Creating deploy tree </span><br><span class="line">2:30:34 PM: 0 new files to upload</span><br><span class="line">2:30:34 PM: Starting post processing</span><br><span class="line">2:30:34 PM: 0 new <span class="built_in">functions</span> to upload</span><br><span class="line">2:30:34 PM: Post processing <span class="keyword">done</span></span><br><span class="line">2:30:34 PM: Site is live</span><br><span class="line">2:30:51 PM: Finished processing build request <span class="keyword">in</span> 1m21.11547795s</span><br></pre></td></tr></table></figure>
-<p>认真检测上面的日志，发现有一个容易被忽略的警告:</p>
+<p>认真检查上面的日志，发现有一个容易被忽略的警告:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">themes/icarus/_config.yml is not found. We are creating one for you...</span><br></pre></td></tr></table></figure>
-<p>检测<code>themes/icarus/</code>目录里面，发现有个<code>.gitignore</code>文件，将这个自己辛苦配置的主题配置文件给过滤掉了，本地由于目录没有清理过，没有出现问题，但是在远程主机上，没有它很显然主题<code>icarus</code>没法工作的！</p>
+<p>检查本地博客根目录下的<code>themes/icarus/</code>目录里面，发现有个<code>.gitignore</code>文件，将这个自己辛苦配置的主题配置文件<code>_config.yml</code>文件给过滤掉了，而本地浏览由于目录没有清理过，没有出现问题，但是在远程主机上，没有它很显然主题<code>icarus</code>没法工作的！</p>
 <p>处理办法也简单，删除<code>themes/icarus/.gitignore</code>文件，重新Push &amp; Deploy！</p>
 <h3 id="3-自定义域名-添加https"><a class="markdownIt-Anchor" href="#3-自定义域名-添加https"></a> 3. 自定义域名、添加HTTPS</h3>
-<p>这个需要自己有域名了，我懒得弄。</p>
-<p>详细的参考<a href="https://docs.netlify.com/domains-https/custom-domains/">官方文档</a>或者百度搜索其它人的博客文章吧~</p>
+<p>这个需要自己有域名了，我以前注册过自己id的域名，做一些前端开发测试用。</p>
+<p>我的域名是<a href="www.herowuking.com">herowuking.com</a>，在阿里云注册的。首先在<a href="https://app.netlify.com/">Netlify</a>的管理页面，进入站点的配置界面<code>Domain management</code>，然后<code>Add custom domain</code>，输入自己的域名，需要<code>Verify</code>一下，然后<code>Check DNS configuration</code></p>
+<p><img src="/categories/Hexo/netlify/image-20200228192339877.png" alt="Check_DNS_configuration"></p>
+<p>在弹出的对话框中，有两种办法：</p>
+<ol>
+<li>添加一条A记录指向固定IP；</li>
+<li>使用ALIAS或ANAME记录。</li>
+</ol>
+<p>浏览到页面的最新部分，发现还有更优的方案–直接使用Netlify提供的DNS服务</p>
+<p><img src="/categories/Hexo/netlify/image-20200228192815883.png" alt="Use_Netlify_DNS"></p>
+<p>点击<code>Set up Netlify DNS for herowuking.com</code>链接，Verify，Continue之后会得到几个DNS服务器地址，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dns1.p06.nsone.net</span><br><span class="line">dns2.p06.nsone.net</span><br><span class="line">dns3.p06.nsone.net</span><br><span class="line">dns4.p06.nsone.net</span><br></pre></td></tr></table></figure>
+<p>拿到这个DNS服务器地址之后，进入阿里云控制台，域名管理：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228193127285.png" alt="Aliyun_DNS_management"></p>
+<p>然后，修改DNS为上面Netlify提供的。</p>
+<p>阿里云会给你发一条短信验证码，填进去确认即可。</p>
+<p>很快，在Netlify的<code>Domain management</code>页面的底部，找到HTTPS设置的地方，先Verfify DNS configuration，看看是否成功：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228193652282.png" alt="Netlify_Verify_DNS_Config"></p>
+<p>不出意外应该有<code>DNS verification was successful</code>✔️的提示，表明自定义域名设置成功了，你可以用自己的域名访问博客试一试了。</p>
+<p>使用Netlify提供的DNS服务有一个好处，就是设置完之后HTTPS证书自动就配置好了：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228195727876.png" alt="HTTPS_LETS_Encrypt"></p>
+<p><strong>墙内的悲哀</strong></p>
+<p>刚刚一顿操作猛如虎，结果发现自己开着SwitchyOmega，浏览器是通过代理访问的😂</p>
+<p>关闭代理直接连接，发现无法正常访问<code>herowuking.com</code>这个自定义域名了。</p>
+<p>墙内的悲哀🖕 用代理有各种限制，流量也不够</p>
+<p>哎，在墙内还是老老实实使用阿里云的DNS解析服务器吧，回到Netlify控制台，删除刚刚的DNS配置。</p>
+<p><img src="/categories/Hexo/netlify/image-20200228204538188.png" alt="Delete_Netlify_DNS"></p>
+<p><strong>注意路径：</strong></p>
+<p>登录Netlify–&gt;选择第3个标签页<code>Domain</code>–&gt;在页面的最下面，有个<code>Delete DNS Zone</code>按钮，确认之后删除。</p>
+<p>站点<code>Sites</code>里面的DNS配置根据提示，应该使用<code>www.herowuking.com</code>作为主记录，因此也删了重新配置。</p>
+<p><img src="/categories/Hexo/netlify/image-20200228204952445.png" alt="Reconfig_DNS_for_Netlify_blog"></p>
+<p>确认之后，发现有2个个性化域名：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228205103361.png" alt="Custom_domians"></p>
+<p>点击<code>Check DNS configuration</code>，发现里面需要添加的记录不一样。</p>
+<p><a href="www.herowuking.com">www.herowuking.com</a>: 添加CNAME记录</p>
+<p><a href="herowuking.com">herowuking.com</a>: 添加ALIAS记录和A记录</p>
+<p>在阿里云控制台域名解析里面的配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>解析路线</th>
+<th>记录值</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>www</td>
+<td>CNAME</td>
+<td>中国联通</td>
+<td><a href="http://wuking.netlify.com">wuking.netlify.com</a></td>
+<td>1 小时</td>
+</tr>
+<tr>
+<td>@</td>
+<td>A</td>
+<td>中国联通</td>
+<td>104.198.14.52</td>
+<td>1 小时</td>
+</tr>
+<tr>
+<td>@</td>
+<td>NS</td>
+<td>中国联通</td>
+<td><a href="http://wuking.netlify.com">wuking.netlify.com</a></td>
+<td>1 小时</td>
+</tr>
+</tbody>
+</table>
+<p>这样，站点访问正常了，而且意外地发现上面激活的HTTPS证书还有效：</p>
+<p><img src="/categories/Hexo/netlify/image-20200228210023325.png" alt="SSL_TLS_certificate"></p>
+<p>就是没法自动续签了，有效期只有3个月，如果到期了就要手工处理了。</p>
+<p><strong>将默认的netlify二级域名重定向到个性域名</strong></p>
+<p>处于SEO的考虑，如果想将Netlify提供的二级域名<code>wuking.netlify.net</code>，自动重定向到<code>www.herowuking.com</code>这个个性化域名地址。需要在站点发布的目录下新建一个<code>_redirects</code>文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># These rules will change if you change your site’s custom domains or HTTPS settings</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Redirect default Netlify subdomain to primary domain</span></span><br><span class="line">https://wuking.netlify.com/* https://www.herowuking.com/:splat 301!</span><br></pre></td></tr></table></figure>
+<p>也就是说，要做<code>public/</code>目录下增加这个文件<code>_redirects</code>。同时，修改一下<code>.gitignore</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line">node_modules/</span><br><span class="line">public/*</span><br><span class="line">!public/_redirects</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
+<p>以上操作参考的是<a href="https://docs.netlify.com/domains-https/custom-domains/">官方文档</a></p>
 
 			</div>
 		
@@ -441,72 +521,8 @@
     
         
 
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Hexo/">
-            <span class="level-start">
-                <span class="level-item">Hexo</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Others/">
-            <span class="level-start">
-                <span class="level-item">Others</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
     
         
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">二月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">一月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
     
         
     
@@ -732,7 +748,7 @@
 <script>
 var IcarusThemeSettings = {
     site: {
-        url: 'https://hero.github.io',
+        url: 'https://www.herowuking.com',
         external_link: {"enable":true,"exclude":[]}
     },
     article: {
