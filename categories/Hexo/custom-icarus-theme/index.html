@@ -19,7 +19,7 @@
 <meta property="og:description" content="本文记录如何配置Hexo的主题和插件。 目标主题：  [x] icarus  博客插件：  hexo-filter-mermaid-diagrams">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.herowuking.com/categories/Hexo/custom-icarus-theme/custom-hexo-theme-thumbnail.png">
-<meta property="og:updated_time" content="2020-02-28T03:34:01.837Z">
+<meta property="og:updated_time" content="2020-02-29T01:26:49.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo配置主题与插件">
 <meta name="twitter:description" content="本文记录如何配置Hexo的主题和插件。 目标主题：  [x] icarus  博客插件：  hexo-filter-mermaid-diagrams">
@@ -86,7 +86,6 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" class="aplayer-style-marker">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-script-marker"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" class="meting-script-marker"></script>
 </head>
 <body class="is-2-column">
     <nav class="navbar navbar-main">
@@ -164,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    27 分钟 读完 (大约 4040 个字)
+                    29 分钟 读完 (大约 4282 个字)
                 </span>
                 
                 
@@ -311,15 +310,64 @@
 <h3 id="42-多媒体播放插件"><a class="markdownIt-Anchor" href="#42-多媒体播放插件"></a> 4.2 多媒体播放插件</h3>
 <p>对于音乐播放，安装插件<a href="https://github.com/MoePlayer/hexo-tag-aplayer"><code>hexo-tag-aplayer</code></a>，然后配置一下即可：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure>
-<p>修改博客根目录下的<code>站点配置文件</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aplayer:</span></span><br><span class="line"><span class="attr">  cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</span>  <span class="comment"># 引用 APlayer.js 外部 CDN 地址 (默认不开启)</span></span><br><span class="line"><span class="attr">  style_cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css</span></span><br><span class="line"><span class="attr">  meting:</span> <span class="literal">true</span>       <span class="comment"># MetingJS 支持</span></span><br><span class="line"><span class="attr">  meting_cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js</span> <span class="comment"># 引用 Meting.js 外部 CDN 地址 (默认不开启)</span></span><br></pre></td></tr></table></figure>
-<p>测试一下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting <span class="string">"1390496797"</span> <span class="string">"netease"</span> <span class="string">"song"</span> %&#125;</span><br></pre></td></tr></table></figure>
-<!--
-    <div id="aplayer-FRhCZRpJ" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1390496797" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
-    ></div>-->
-<p>貌似没效果，而且连目录都不正常了！</p>
+<p>然后在markdown文档里面插入音乐的格式语法如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer title author url [picture_url, narrow, autoplay, width:xxx, lrc:xxx] %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>除了开头关键字<code>aplayer</code>，大括号里面的其它参数都要用双引号包括起来。</p>
+</blockquote>
+<ul>
+<li>
+<p><code>title</code> : music title</p>
+</li>
+<li>
+<p><code>author</code>: music author</p>
+</li>
+<li>
+<p><code>url</code>: music file url</p>
+</li>
+<li>
+<p><code>picture_url</code>: optional, music picture url</p>
+</li>
+<li>
+<p><code>narrow</code>: optional, narrow style</p>
+</li>
+<li>
+<p><code>autoplay</code>: optional, autoplay music, not supported by mobile browsers</p>
+</li>
+<li>
+<p><code>width:xxx</code>: optional, prefix <code>width:</code>, player’s width (default: 100%)</p>
+</li>
+<li>
+<p><code>lrc:xxx</code>: optional, prefix <code>lrc:</code>, LRC file url</p>
+</li>
+</ul>
+<p>使用<code>hexo-tag-aplayer</code>就是要找到音乐的真实地址，推荐个<a href="https://music.sonimei.cn/">全网音乐免费下载工具</a>，例如我搜了<code>刀郎</code>的<code>西海情歌</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;西海情歌&quot; &quot;刀郎&quot; &quot;http://nu01.sycdn.kuwo.cn/cbcd352abcf53d0538b87cbc18770851/5e59b7c5/resource/n2/98/33/2292977948.mp3&quot; &quot;http://img3.kuwo.cn/star/starheads/120/4/6e36dbaa5bdc4fe424963901b3715d1_0.jpg&quot;  &quot;autoplay&quot; %&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="aplayer-HSgEVdOw" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-HSgEVdOw"),
+            narrow: false,
+            autoplay: true,
+            showlrc: false,
+            music: {
+              title: "西海情歌",
+              author: "刀郎",
+              url: "http://nu01.sycdn.kuwo.cn/cbcd352abcf53d0538b87cbc18770851/5e59b7c5/resource/n2/98/33/2292977948.mp3",
+              pic: "http://img3.kuwo.cn/star/starheads/120/4/6e36dbaa5bdc4fe424963901b3715d1_0.jpg",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p><strong>MeingJS支持</strong></p>
+<p>如果你像开启MetingJS支持，那么就要修改博客根目录下的<code>站点配置文件</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aplayer:</span></span><br><span class="line"><span class="attr">  cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</span>  <span class="comment"># 引用 APlayer.js 外部 CDN 地址 (默认不开启)</span></span><br><span class="line"><span class="attr">  style_cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css</span></span><br><span class="line">  <span class="comment"># meting: true       # MetingJS 支持</span></span><br><span class="line">  <span class="comment"># meting_cdn: https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js # 引用 Meting.js 外部 CDN 地址 (默认不开启)</span></span><br></pre></td></tr></table></figure>
+<p>我觉得这个功能有点鸡肋，懒得添加MeingJS支持了！</p>
 <h3 id="43-高级渲染插件"><a class="markdownIt-Anchor" href="#43-高级渲染插件"></a> 4.3 高级渲染插件</h3>
 <p>默认的Hexo是无法渲染标签符号的，在<code>Typora</code>中编辑显示很好的标签符号😂，经Hexo编译输出后默认还是文本<code>:joy:</code>。</p>
 <p>解决办法就是更换一下Hexo默认的渲染引擎了：</p>
