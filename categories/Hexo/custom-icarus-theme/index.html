@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-<meta name="generator" content="Hexo 3.8.0" />
+<meta name="generator" content="Hexo 3.9.0" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -19,7 +19,7 @@
 <meta property="og:description" content="本文记录如何配置Hexo的主题和插件。 目标主题：  [x] icarus  博客插件：  hexo-filter-mermaid-diagrams">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.herowuking.com/categories/Hexo/custom-icarus-theme/custom-hexo-theme-thumbnail.png">
-<meta property="og:updated_time" content="2020-02-29T01:26:49.997Z">
+<meta property="og:updated_time" content="2020-02-29T08:15:13.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo配置主题与插件">
 <meta name="twitter:description" content="本文记录如何配置Hexo的主题和插件。 目标主题：  [x] icarus  博客插件：  hexo-filter-mermaid-diagrams">
@@ -163,7 +163,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    29 分钟 读完 (大约 4282 个字)
+                    33 分钟 读完 (大约 4886 个字)
                 </span>
                 
                 
@@ -343,13 +343,14 @@
 </ul>
 <p>使用<code>hexo-tag-aplayer</code>就是要找到音乐的真实地址，推荐个<a href="https://music.sonimei.cn/">全网音乐免费下载工具</a>，例如我搜了<code>刀郎</code>的<code>西海情歌</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;西海情歌&quot; &quot;刀郎&quot; &quot;http://nu01.sycdn.kuwo.cn/cbcd352abcf53d0538b87cbc18770851/5e59b7c5/resource/n2/98/33/2292977948.mp3&quot; &quot;http://img3.kuwo.cn/star/starheads/120/4/6e36dbaa5bdc4fe424963901b3715d1_0.jpg&quot;  &quot;autoplay&quot; %&#125;</span><br></pre></td></tr></table></figure>
+<p>如果有歌词，可以在上面的语句中添加<code>lrc: LRC歌词地址</code>，可惜这首<code>西海情歌</code>没有歌词。</p>
 
-        <div id="aplayer-HSgEVdOw" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-PqkHkYeL" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-HSgEVdOw"),
+            element: document.getElementById("aplayer-PqkHkYeL"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -364,10 +365,31 @@
           window.aplayers || (window.aplayers = []);
           window.aplayers.push(ap);
         </script>
+<p>还有一种内嵌歌词的书写格式（不常用）：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayerlrc "title" "author" "url" "autoplay" %&#125;</span><br><span class="line">[00:00.00]lrc here</span><br><span class="line">&#123;% endaplayerlrc %&#125;</span><br></pre></td></tr></table></figure>
+<p>播放列表：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayerlist %&#125;</span><br><span class="line">&#123;</span><br><span class="line"><span class="code">    "narrow": false,                          // Optional, narrow style</span></span><br><span class="line"><span class="code">    "autoplay": true,                         // Optional, autoplay song(s), not supported by mobile browsers</span></span><br><span class="line"><span class="code">    "mode": "random",                         // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`</span></span><br><span class="line"><span class="code">    "showlrc": 3,                             // Optional, show lrc, can be 1, 2, 3</span></span><br><span class="line"><span class="code">    "mutex": true,                            // Optional, pause other players when this player playing</span></span><br><span class="line"><span class="code">    "theme": "#e6d0b2",	                      // Optional, theme color, default: #b7daff</span></span><br><span class="line"><span class="code">    "preload": "metadata",                    // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'</span></span><br><span class="line"><span class="code">    "listmaxheight": "513px",                 // Optional, max height of play list</span></span><br><span class="line"><span class="code">    "music": [</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            "title": "CoCo",</span></span><br><span class="line"><span class="code">            "author": "Jeff Williams",</span></span><br><span class="line"><span class="code">            "url": "caffeine.mp3",</span></span><br><span class="line"><span class="code">            "pic": "caffeine.jpeg",</span></span><br><span class="line"><span class="code">            "lrc": "caffeine.txt"</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            "title": "アイロニ",</span></span><br><span class="line"><span class="code">            "author": "鹿乃",</span></span><br><span class="line"><span class="code">            "url": "irony.mp3",</span></span><br><span class="line"><span class="code">            "pic": "irony.jpg"</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    ]</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;% endaplayerlist %&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="aplayer-nYBRHodO" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+			  <script>
+				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mode":"random","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"花儿为什么这样红","author":"刀郎","url":"http://win.web.ra01.sycdn.kuwo.cn/6a6346dffd63475b25c9e453b6580ba9/5e5a15b3/resource/n3/94/35/2962963086.mp3","pic":"http://p1.music.126.net/l4ezrBVqBuXRl7TquLsG7Q==/45079976739601.jpg","lrc":"/categories/Hexo/custom-icarus-theme/花儿为什么这样红-刀郎.lrc"},{"title":"关山酒","author":"等什么君","url":"http://m10.music.126.net/20200229163820/44993fc11d4c5ef6ba4c0134444e2575/ymusic/5409/5158/025b/cc5945120af2295af4f051f44fc9981d.mp3","pic":"http://p2.music.126.net/TzhBcIpEldkML6hvYKtzsQ==/109951164333017222.jpg","lrc":"/categories/Hexo/custom-icarus-theme/关山酒-等什么君.lrc"},{"title":"我们都是无名之辈","author":"解忧邵帅","url":"http://m10.music.126.net/20200229161223/46e0fe20ee3d6b66941bf3c8ca8b4afd/ymusic/565e/060e/530e/a43299700f1d1d3308d9dd24946549f6.mp3","pic":"http://p2.music.126.net/wGBs48dBWC-eCdYTp7B0sw==/109951164060830676.jpg","lrc":"/categories/Hexo/custom-icarus-theme/我们都是无名之辈-解忧邵帅.lrc"}]};
+				  options.element = document.getElementById("aplayer-nYBRHodO");
+				  var ap = new APlayer(options);
+			    window.aplayers || (window.aplayers = []);
+				  window.aplayers.push(ap);
+			  </script>
+<blockquote>
+<p><em>使用本地歌词:</em></p>
+<p>例如，我用的主题<code>icarus</code>，当前页面相对于主域名的路径为<code>/categories/Hexo/custom-icarus-theme/</code>，因此我将歌词下载到了和本页面需要加载图片的相同位置，然后<code>lrc</code>歌词路径就参考图片路径写法了：</p>
+<p>“lrc”: “/categories/Hexo/custom-icarus-theme/花儿为什么这样红-刀郎.lrc”</p>
+</blockquote>
+<p>由于本页面使用了<code>APlayer</code>，在页面加载的时候出现了DOMException：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOMException: <span class="string">"The play method is not allowed by the user agent or the platform in the current context, possibly because the user denied permission."</span></span><br></pre></td></tr></table></figure>
+<p>所以，导致目录链接失效了！</p>
 <p><strong>MeingJS支持</strong></p>
-<p>如果你像开启MetingJS支持，那么就要修改博客根目录下的<code>站点配置文件</code>：</p>
+<p>对于<code>hexo-tag-aplyer</code>插件，如果你想开启<a href="https://github.com/metowolf/MetingJS">MetingJS</a>支持，那么就要修改博客根目录下的<code>站点配置文件</code>：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aplayer:</span></span><br><span class="line"><span class="attr">  cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</span>  <span class="comment"># 引用 APlayer.js 外部 CDN 地址 (默认不开启)</span></span><br><span class="line"><span class="attr">  style_cdn:</span> <span class="attr">https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css</span></span><br><span class="line">  <span class="comment"># meting: true       # MetingJS 支持</span></span><br><span class="line">  <span class="comment"># meting_cdn: https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js # 引用 Meting.js 外部 CDN 地址 (默认不开启)</span></span><br></pre></td></tr></table></figure>
-<p>我觉得这个功能有点鸡肋，懒得添加MeingJS支持了！</p>
+<p>个人觉得这个功能有点鸡肋，虽然书写格式简短了点，但是不灵活，很多其它网站的音乐没法添加了。所以，我注释掉了<code>meting</code>相关的行，没有添加MeingJS支持！</p>
 <h3 id="43-高级渲染插件"><a class="markdownIt-Anchor" href="#43-高级渲染插件"></a> 4.3 高级渲染插件</h3>
 <p>默认的Hexo是无法渲染标签符号的，在<code>Typora</code>中编辑显示很好的标签符号😂，经Hexo编译输出后默认还是文本<code>:joy:</code>。</p>
 <p>解决办法就是更换一下Hexo默认的渲染引擎了：</p>
@@ -605,8 +627,72 @@
     
         
 
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Others/">
+            <span class="level-start">
+                <span class="level-item">Others</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
     
         
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
     
         
     
