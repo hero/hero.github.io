@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="Git很重要，但是没有系统的学习过，只会git push和git clone的人，今天花时间整理一下。">
-<meta name="keywords" content="git,Github,Gitee,skills">
+<meta name="keywords" content="Github,git,Gitee,skills">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git基本操作与使用技巧">
 <meta property="og:url" content="https://www.herowuking.com/categories/Git/Git_Skills/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:description" content="Git很重要，但是没有系统的学习过，只会git push和git clone的人，今天花时间整理一下。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.herowuking.com/categories/Git/Git_Skills/Git_Skills-thumbnail.png">
-<meta property="og:updated_time" content="2020-03-05T07:03:38.078Z">
+<meta property="og:updated_time" content="2020-03-06T10:37:46.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git基本操作与使用技巧">
 <meta name="twitter:description" content="Git很重要，但是没有系统的学习过，只会git push和git clone的人，今天花时间整理一下。">
@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    24 分钟 读完 (大约 3646 个字)
+                    25 分钟 读完 (大约 3822 个字)
                 </span>
                 
                 
@@ -297,6 +297,11 @@
 <p>对于一个新的项目，常规的操作方法如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于一个新的项目，需要初始化Git</span></span><br><span class="line">$ git init</span><br><span class="line"><span class="comment"># 添加Gitee远程地址，用于在国内push或fetch操作</span></span><br><span class="line">$ git remote add origin git@gitee.com:hero-wuking/hexo-blog.git</span><br><span class="line"><span class="comment"># 再添加一个Github的远程地址，灾备</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url --add origin git@github.com:hero/hexo-blog.git</span><br><span class="line"><span class="comment"># 查看远程地址设置</span></span><br><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
 <p><img src="/categories/Git/Git_Skills/image-20200305144957313.png" alt="git_remote-v"></p>
+<h3 id="技巧2-win10主机和wsl公用一个ssh密钥"><a class="markdownIt-Anchor" href="#技巧2-win10主机和wsl公用一个ssh密钥"></a> 技巧2： Win10主机和WSL公用一个SSH密钥</h3>
+<p>现在在Windows上撸代码，根本离不开WSL了，那么如何只是简单的将Windows系统中用户目录下的<code>.ssh</code>目录里面的<code>id_rsa</code>和<code>id_rsa.pub</code>拷贝到WSL系统的<code>~/.ssh</code>目录中就行了么？ 没有那么简单！</p>
+<p>你可能会遇到<code>load id_rsa Access deny</code>的错误提示。</p>
+<p>正确的做法是，将Win10主机中的<code>id_rsa</code>和<code>id_rsa.pub</code>拷贝到WSL系统的<code>~/.ssh</code>目录中之后，还需要在WSL系统中设置<code>id_rsa</code>文件的用户组和用户权限（600或400均可）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp <span class="variable">$USER</span> ~/.ssh/id_rsa</span><br><span class="line">chmod 600 ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
 <h3 id="参考文档"><a class="markdownIt-Anchor" href="#参考文档"></a> 参考文档：</h3>
 <ol>
 <li><a href="https://www.bootcss.com/p/git-guide/">git - 简易指南</a></li>
@@ -356,6 +361,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/categories/Others/play_mi_pad4/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">小米Pad4 Plus玩机记录</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -435,7 +447,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -459,7 +471,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            20
+                            25
                         </p>
                     </a>
                 </div>
@@ -517,99 +529,8 @@
     
         
 
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Git/">
-            <span class="level-start">
-                <span class="level-item">Git</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Hexo/">
-            <span class="level-start">
-                <span class="level-item">Hexo</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Others/">
-            <span class="level-start">
-                <span class="level-item">Others</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Wisdom/">
-            <span class="level-start">
-                <span class="level-item">Wisdom</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
     
         
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">二月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">一月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
     
         
     
@@ -682,6 +603,9 @@
         <a class="is-flex" href="#技巧1-一个项目同时推送到多个远程git仓库">        
         <span> 技巧1： 一个项目同时推送到多个远程Git仓库</span>
         </a></li><li>
+        <a class="is-flex" href="#技巧2-win10主机和wsl公用一个ssh密钥">        
+        <span> 技巧2： Win10主机和WSL公用一个SSH密钥</span>
+        </a></li><li>
         <a class="is-flex" href="#参考文档">        
         <span> 参考文档：</span>
         </a></li></ul>
@@ -695,6 +619,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/categories/Others/play_mi_pad4/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/categories/Others/play_mi_pad4/mi-pad4-thumbnail.jpg" alt="小米Pad4 Plus玩机记录">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-08T05:31:19.000Z">2020-03-08</time></div>
+                    <a href="/categories/Others/play_mi_pad4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">小米Pad4 Plus玩机记录</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -765,25 +708,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T13:37:00.000Z">2020-02-19</time></div>
                     <a href="/categories/Others/proxifier/" class="title has-link-black-ter is-size-6 has-text-weight-normal">使用Proxifier代理安装Qt for Golang</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Others/">Others</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/categories/Others/meeting/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/categories/Others/meeting/meeting-thumbnail.png" alt="腾讯会议的使用记录">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T08:35:00.000Z">2020-02-18</time></div>
-                    <a href="/categories/Others/meeting/" class="title has-link-black-ter is-size-6 has-text-weight-normal">腾讯会议的使用记录</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Others/">Others</a>
                     </p>
